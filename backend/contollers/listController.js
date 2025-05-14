@@ -4,13 +4,16 @@ import fs from 'fs';
 
 import listModel from '../models/list.js';
 import agentModel from '../models/agentModel.js';
+import path from 'path';
+
+
 
 
 export const uploadAndDistribute=async(req,res)=>{
     try {
         const filePath=req.file.path;
         let data;
-        const ext = filePath.split('.').pop();
+        const ext = path.extname(filePath).toLowerCase().slice(1); // 'csv' or 'xlsx'
     if (ext === 'csv') {
       data = await csv().fromFile(filePath);
     } else if (['xlsx', 'xls'].includes(ext)) {

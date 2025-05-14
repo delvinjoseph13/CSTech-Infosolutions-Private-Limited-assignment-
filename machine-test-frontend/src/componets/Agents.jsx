@@ -35,7 +35,7 @@ function Agents() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost/agent/addagent",
+        "http://localhost:8000/agent/addgents",
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const agentSchema=mongoose.Schema({
   name: String,
   email: String,
-  mobile: String,
+  number: Number,
   password: String
 })
 

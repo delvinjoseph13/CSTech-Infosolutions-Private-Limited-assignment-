@@ -3,30 +3,34 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 
-export const registerUser=async(req,res)=>{
-    const {email,password}=req.body;
+export const registerUser = async (req, res) => {
+    const { email, password } = req.body;
+
     try {
-        const user=userModel.findOne({email})
-        if(user){
-            return res.status(404).json({message:"User already exists"})
+        const existingUser = await userModel.findOne({ email });
+
+        if (existingUser) {
+            return res.status(400).json({ message: "User already exists" });
         }
-        const hashPassword=bcrypt.hashSync(password,10)
-        const newUser=await userModel.create({
+
+        const hashedPassword = bcrypt.hashSync(password, 10);
+
+        const newUser = await userModel.create({
             email,
-            password:hashPassword
-        })
+            password: hashedPassword
+        });
 
-        await newUser.save()
+        return res.status(201).json({ message: "User registered successfully", user: newUser });
+
     } catch (error) {
-        res.status(500).json({message:error.message})
+        return res.status(500).json({ message: error.message });
     }
-}  
-
+};
 
 export const loginUser=async(req,res)=>{
     const {email,password}=req.body;
     try {
-        const user=userModel.findOne({email});
+        const user=await userModel.findOne({email});
         if(!user){
             return res.status(401).json({message:"User not found"})
         }

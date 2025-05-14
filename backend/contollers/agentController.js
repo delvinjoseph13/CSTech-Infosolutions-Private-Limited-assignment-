@@ -8,6 +8,7 @@ export const addAgents=async(req,res)=>{
             name,email,number,password
         })
         await newAgent.save();
+        res.status(201).json(newAgent);
     } catch (error) {
         res.status(500).json({message:error.message})
     }
@@ -17,7 +18,7 @@ export const addAgents=async(req,res)=>{
 export const getAgents=async(req,res)=>{
     try {
         const agents=await agentModel.find();
-        if(!agents){
+        if(agents.length===0){
             return res.status(404).json({message:"No agents found"})
         }
         res.json(agents)
