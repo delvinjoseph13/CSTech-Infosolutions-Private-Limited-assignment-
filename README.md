@@ -56,3 +56,24 @@ npm install
 3. **Start the Frontend**
 
 npm run dev
+
+Upload CSV & Distribute Lists
+Upload a .csv or .xlsx file with the following format:
+
+| FirstName | Phone      | Notes                   |
+| --------- | ---------- | ----------------------- |
+| Alice     | 9876543210 | Interested in call back |
+| Bob       | 8765432109 | Asked for pricing       |
+| Charlie   | 7654321098 | Wants demo              |
+| David     | 6543210987 | No response             |
+| Eva       | 5432109876 | Schedule follow-up      |
+
+
+
+Distribution Logic
+
+The application fetches a maximum of 5 agents from the database.
+
+Uploaded list items are evenly distributed using a round-robin method.
+
+If the number of items is not divisible by 5, remaining items are assigned one-by-one from the start.
