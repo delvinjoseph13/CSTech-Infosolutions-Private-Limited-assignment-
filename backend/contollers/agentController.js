@@ -1,6 +1,7 @@
 import agentModel from "../models/agentModel.js"
 
 
+//adding newAgents
 export const addAgents=async(req,res)=>{
     const {name,email,number,password}=req.body
     try {
@@ -14,7 +15,7 @@ export const addAgents=async(req,res)=>{
     }
 }
 
-
+//getting the agents
 export const getAgents=async(req,res)=>{
     try {
         const agents=await agentModel.find();

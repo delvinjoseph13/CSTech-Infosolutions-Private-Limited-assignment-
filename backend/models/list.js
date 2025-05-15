@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 
 const listSchema = mongoose.Schema({
-  name: String,
-  email: String,
-  number: Number,  // or Number if you're not worried about leading 0s
-  password: String,
+  FirstName: String,
+  Phone: Number,
+  Notes: String,
   agentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Agent' }
 });
 

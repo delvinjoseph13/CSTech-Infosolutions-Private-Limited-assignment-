@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 function Register(){
 
+    //formdata for the input values
     const [formData,setFormData]=useState({
         email:'',
         password:''
@@ -13,6 +14,7 @@ function Register(){
     const [error,setError]=useState({})
     const navigate=useNavigate();
 
+       //setting the form data 
     function handleChange(e){
           setFormData({
             ...formData,
@@ -21,6 +23,7 @@ function Register(){
 
     }
 
+    //function to handle the form submission
    async function handleSubmit(e){
         e.preventDefault();
 

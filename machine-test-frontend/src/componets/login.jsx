@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 function Login() {
+
+  //formdata for the input values
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -11,6 +13,7 @@ function Login() {
   const [error, setError] = useState({});
   const navigate = useNavigate();
 
+   //setting the form data 
   function handleChange(e) {
     setFormData({
       ...formData,
@@ -18,6 +21,8 @@ function Login() {
     });
   }
 
+
+  //function for login
   async function handleSubmit(e) {
     e.preventDefault();
     const newError = {};

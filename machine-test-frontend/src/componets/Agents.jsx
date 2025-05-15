@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function Agents() {
+  //useState for input values
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,12 +13,14 @@ function Agents() {
   const [error, setError] = useState({});
   const [success, setSuccess] = useState("");
 
+  //setting the form data 
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     setError((prev) => ({ ...prev, [name]: undefined, form: undefined }));
   }
 
+  //submitting the form data
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -48,7 +51,8 @@ function Agents() {
       setError({ form: err.response?.data?.message || "Request failed" });
     }
   }
-
+ 
+  //useEffect for timer for success message
   useEffect(() => {
     if (success) {
       const timer = setTimeout(() => {
@@ -98,6 +102,7 @@ function Agents() {
           name="mobileNo"
           placeholder="Mobile Number"
           value={formData.mobileNo}
+          maxLength={10}
           onChange={handleChange}
           className="w-full p-2 mb-3 border rounded"
         />

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+
+//function for dashboard
 function DashBoard() {
   return (
     <div className="p-6 bg-gray-100 min-h-screen">

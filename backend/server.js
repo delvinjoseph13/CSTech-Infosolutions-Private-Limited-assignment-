@@ -4,8 +4,10 @@ import userRouter from './routes/auth.js';
 import agentRouter from './routes/agent.js';
 import listRouter from './routes/list.js';
 import cors from 'cors'
+import dotenv from 'dotenv'
 
 
+dotenv.config();
 const app= express();
 app.use(json())
 app.use(cors())
@@ -13,7 +15,8 @@ app.use(cors())
 
 
 
-    mongoose.connect("mongodb+srv://delvinjoseph3364:YhixbEgPctbtfQTQ@cluster0.x3zjor1.mongodb.net/")
+
+    mongoose.connect(process.env.MOGODB_URL)
     const db=mongoose.connection
     db.on("open",()=>{
         console.log("connected successfully")
